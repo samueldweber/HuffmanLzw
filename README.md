@@ -1,2 +1,2 @@
 # HuffmanLzw
-HuffmanLzw compression
+HuffmanLzw compression made for educational purposes
