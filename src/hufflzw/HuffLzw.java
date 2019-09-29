@@ -5,6 +5,7 @@
  */
 package hufflzw;
 
+import hufflzw.crc.CRC;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -20,7 +21,9 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.List;
+import java.util.zip.CRC32;
 import org.apache.commons.io.IOUtils;
 
 /**
@@ -60,7 +63,9 @@ public class HuffLzw {
 
         File inFile = new File(args[1]);
         File outFile = new File(args[2]);
-        InputStream bin = new ByteArrayInputStream(lzwComp(args[1]));
+        final byte[] data = getData(args[1]);
+        final String crc = crc(data);
+        InputStream bin = new ByteArrayInputStream(lzwComp(data));
         HuffmanOutputStream hout = new HuffmanOutputStream(new FileOutputStream(outFile));
         byte buf[] = new byte[4096];
         int len;
@@ -71,9 +76,10 @@ public class HuffLzw {
         bin.close();
         hout.close();
 
-        System.out.println("Compression: done");
-        System.out.println("Original file size:     " + inFile.length());
-        System.out.println("Compressed file size:   " + outFile.length());
+        System.out.println("Compressao: pronta");
+        System.out.println("Tamanho original:     " + inFile.length());
+        System.out.println("Tamanho comprimido:   " + outFile.length());
+        System.out.println("CRC: " + crc);
         System.out.print("Compression efficiency: ");
         if (inFile.length() > outFile.length()) {
             System.out.format("%.2f%%\n", (100.0 - (((double) outFile.length() / (double) inFile.length()) * 100)));
@@ -100,10 +106,15 @@ public class HuffLzw {
             hin.close();
             bout.close();
             
-            File outFile = lzwDecomp(bout.toByteArray(), args[2]);
-            System.out.println("Decompression: done");
-            System.out.println("Original file size:     " + inFile.length());
-            System.out.println("Decompressed file size: " + outFile.length());
+            final byte[] data = lzwDecomp(bout.toByteArray());
+            
+            
+            File outFile = generateFile(data, args[2]);
+            final String crc = crc(data);
+            System.out.println("Decompressao: pronta");
+            System.out.println("Tamanho original:     " + inFile.length());
+            System.out.println("Tamanho decomprimido: " + outFile.length());
+            System.out.println("CRC: " + crc);
     }
 
     public static void calcEntropy(String[] args) throws IOException {
@@ -136,16 +147,21 @@ public class HuffLzw {
             System.exit(1);
     }
     
-    public static byte[] lzwComp(final String path) throws FileNotFoundException, IOException {
-        File inFile = new File(path);
-        final FileInputStream fos = new FileInputStream(inFile);
-        byte[] lzwc = lzw.encode(IOUtils.toByteArray(fos));
+    public static byte[] lzwComp(final byte[] data) {
+        byte[] lzwc = lzw.encode(data);
         return lzwc;
     }
     
-    public static File lzwDecomp(final byte[] content, String name) throws IOException {
+    public static byte[] lzwDecomp(final byte[] content) throws IOException {
         byte[] lzwd = lzw.decode(content);
-        return generateFile(lzwd, name);
+        return lzwd;
+    }
+    
+    public static byte[] getData(final String path) throws FileNotFoundException, IOException {
+        File inFile = new File(path);
+        final FileInputStream fos = new FileInputStream(inFile);
+        final byte[] out = IOUtils.toByteArray(fos);
+        return out;
     }
     
     public static File generateFile(final byte[] data, final String name) throws IOException {
@@ -158,6 +174,14 @@ public class HuffLzw {
         }
         
         return out;
+    }
+    
+    public static String crc(final byte[] data) {
+
+        CRC crc = new CRC();
+        System.out.println("Tam. data: " + data.length);
+        final byte[] clone = Arrays.copyOf(data, data.length);
+        return String.valueOf(crc.B013_dnpcrc(data, data.length));
     }
     
 }
