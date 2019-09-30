@@ -5,7 +5,6 @@
  */
 package hufflzw;
 
-import hufflzw.crc.CRC;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -19,12 +18,8 @@ import hufflzw.huffman.HFreqTable;
 import hufflzw.lzw.LZW;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.OutputStreamWriter;
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.List;
+import java.nio.file.Files;
 import java.util.zip.CRC32;
-import org.apache.commons.io.IOUtils;
 
 /**
  *
@@ -159,8 +154,7 @@ public class HuffLzw {
     
     public static byte[] getData(final String path) throws FileNotFoundException, IOException {
         File inFile = new File(path);
-        final FileInputStream fos = new FileInputStream(inFile);
-        final byte[] out = IOUtils.toByteArray(fos);
+        final byte[] out = Files.readAllBytes(inFile.toPath());
         return out;
     }
     
@@ -178,10 +172,9 @@ public class HuffLzw {
     
     public static String crc(final byte[] data) {
 
-        CRC crc = new CRC();
-        System.out.println("Tam. data: " + data.length);
-        final byte[] clone = Arrays.copyOf(data, data.length);
-        return String.valueOf(crc.B013_dnpcrc(data, data.length));
+        final CRC32 crc32 = new CRC32();
+        crc32.update(data);
+        return String.valueOf(crc32.getValue());
     }
     
 }
