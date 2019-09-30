@@ -40,8 +40,6 @@ public class HuffLzw {
                 doEncode(args);
             else if (args[0].equals("d"))
                 doDecode(args);
-            else if (args[0].equals("e"))
-                calcEntropy(args);
             else
                 usage();
         } catch (FileNotFoundException err) {
@@ -75,7 +73,7 @@ public class HuffLzw {
         System.out.println("Tamanho original:     " + inFile.length());
         System.out.println("Tamanho comprimido:   " + outFile.length());
         System.out.println("CRC: " + crc);
-        System.out.print("Compression efficiency: ");
+        System.out.print("Eficiencia de compressao: ");
         if (inFile.length() > outFile.length()) {
             System.out.format("%.2f%%\n", (100.0 - (((double) outFile.length() / (double) inFile.length()) * 100)));
         }
@@ -112,33 +110,16 @@ public class HuffLzw {
             System.out.println("CRC: " + crc);
     }
 
-    public static void calcEntropy(String[] args) throws IOException {
-            if (args.length < 2)
-                    usage();
-
-            InputStream in = new FileInputStream(args[1]);
-            HFreqTable ftbl = new HFreqTable();
-            int sym;
-
-            while ((sym = in.read()) != -1)
-                ftbl.add(sym);
-
-            in.close();
-            System.out.format("Entropy: %.2f\n", ftbl.entropy());
-    }
-
     public static void usage() {
-            System.err.println("USAGE: HuffmanDemo c|d|e");
-            System.err.println("       c <input-file> <output-file>: " +
-                    "encode input file and save");
+            System.err.println("USo: HuffmanLzw c|d|e");
+            System.err.println("       c <arq_p_comp> <arq_saida>: " +
+                    "codifica arquivo e salva");
             System.err.println("                        " +
-                    "the results to output file");
-            System.err.println("       d <input-file> <output-file>: " +
-                    "decode input file and save");
+                    "os resultados para o arquivo de saida");
+            System.err.println("       d <arq_p_decomp> <arq_saida>: " +
+                    "decodificia arquivo e salva");
             System.err.println("                        " +
-                    "the results to output file");
-            System.err.println("       e <input-file>: calculate an " +
-                    "entropy of the symbols in input file");
+                    "os resultados para o arquivo de saida");
             System.exit(1);
     }
     
