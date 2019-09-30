@@ -14,11 +14,7 @@ import java.util.HashMap;
 public class LZW {
 
     public byte[] encode(byte[] content) {
-        // ----------------------------------------------------------------------------------------------------//
-        // --------------------------------------VARIAVEIS-----------------------------------------------------//
-        // ----------------------------------------------------------------------------------------------------//
-        // define a hashmap e outras variaveis que serao utilizadas pelo
-        // programa
+        // define a o mapa que armazenará o dicionário e outras variaveis que serao utilizadas pelo algoritmo
         HashMap<String, Integer> dictionary = new HashMap<>();
         final StringBuilder builder = new StringBuilder(); // uso de string builder para melhorar performance
         byte inputByte;
@@ -201,11 +197,7 @@ public class LZW {
     }
 
     public byte[] decode(byte[] content) {
-        // ----------------------------------------------------------------------------------------------------//
-        // --------------------------------------VARIAVEIS-----------------------------------------------------//
-        // ----------------------------------------------------------------------------------------------------//
-        // define a hashmap e outras variaveis que serao utilizadas pelo
-        // programa
+        // define o mapa que irá armazenar o dicionário e outras variaveis que serao utilizadas pelo algoritmo
         HashMap<Integer, String> dictionary = new HashMap<>();
         String[] Array_char;
         int dictSize = 256;
