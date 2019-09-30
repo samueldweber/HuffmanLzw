@@ -10,7 +10,7 @@ import java.util.Map;
 
 /**
  *
- * @author samuelweber
+ * @author samuelweber, gisela and dinah
  */
 public class HuffmanDecoder {
     protected final HFreqTable freqTable;

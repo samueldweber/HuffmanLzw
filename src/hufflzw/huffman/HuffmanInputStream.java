@@ -13,7 +13,7 @@ import java.io.InputStream;
 
 /**
  *
- * @author samuelweber
+ * @author samuelweber, gisela and dinah
  */
 public class HuffmanInputStream extends FilterInputStream {
     protected byte[] segment;

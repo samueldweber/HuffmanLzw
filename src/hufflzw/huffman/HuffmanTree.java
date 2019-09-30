@@ -10,7 +10,7 @@ import java.util.PriorityQueue;
 
 /**
  *
- * @author samuelweber
+ * @author samuelweber, gisela and dinah
  */
 public class HuffmanTree {
     protected HuffmanNode root;

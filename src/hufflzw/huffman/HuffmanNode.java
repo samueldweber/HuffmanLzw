@@ -7,7 +7,7 @@ package hufflzw.huffman;
 
 /**
  *
- * @author samuelweber
+ * @author samuelweber, gisela and dinah
  */
 public class HuffmanNode implements Comparable<HuffmanNode> {
     private int sym;

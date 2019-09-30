@@ -28,7 +28,7 @@ import org.apache.commons.io.IOUtils;
 
 /**
  *
- * @author samuelweber
+ * @author samuelweber, gisela and dinah
  */
 public class HuffLzw {
     

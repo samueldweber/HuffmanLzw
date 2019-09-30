@@ -7,7 +7,7 @@ package hufflzw.crc;
 
 /**
  *
- * @author samuc
+ * @author samuelweber, gisela and dinah
  */
 public class CRC {
     

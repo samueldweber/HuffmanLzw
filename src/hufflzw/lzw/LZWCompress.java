@@ -15,7 +15,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author samuelweber
+ * @author samuelweber, gisela and dinah
  */
 public class LZWCompress {
     

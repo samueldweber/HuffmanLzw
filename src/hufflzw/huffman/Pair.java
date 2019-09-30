@@ -7,7 +7,7 @@ package hufflzw.huffman;
 
 /**
  *
- * @author samuelweber
+ * @author samuelweber, gisela and dinah
  */
 public class Pair<TypeOne, TypeTwo> {
     protected final TypeOne first;
