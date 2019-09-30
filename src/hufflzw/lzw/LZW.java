@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 /**
  *
- * @author samuelweber
+ * @author samuelweber, gisela and dinah
  */
 public class LZW {
 

@@ -10,7 +10,7 @@ import java.io.OutputStream;
 
 /**
  *
- * @author samuelweber
+ * @author samuelweber, gisela and dinah
  */
 public class BitOutputStream {
     protected OutputStream out;

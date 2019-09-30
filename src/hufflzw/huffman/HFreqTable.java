@@ -15,7 +15,7 @@ import java.util.Set;
 
 /**
  *
- * @author samuelweber
+ * @author samuelweber, gisela and dinah
  */
 public class HFreqTable {
     // NOTE: freqTable can not be just any Map, we really

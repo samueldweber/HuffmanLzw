@@ -7,7 +7,7 @@ package hufflzw.huffman;
 
 /**
  *
- * @author samuelweber
+ * @author samuelweber, gisela and dinah
  */
 public class HuffMarkers {
     public final static int DEFAULT_SEGMENT_SIZE_KB = 200;

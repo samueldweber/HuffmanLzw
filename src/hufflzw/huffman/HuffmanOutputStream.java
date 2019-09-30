@@ -12,7 +12,7 @@ import java.io.OutputStream;
 
 /**
  *
- * @author samuelweber
+ * @author samuelweber, gisela and dinah
  */
 public class HuffmanOutputStream extends FilterOutputStream {
     protected byte[] segment;

@@ -23,7 +23,7 @@ import java.util.zip.CRC32;
 
 /**
  *
- * @author samuelweber
+ * @author samuelweber, gisela and dinah
  */
 public class HuffLzw {
     

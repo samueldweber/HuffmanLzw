@@ -10,7 +10,7 @@ import java.io.InputStream;
 
 /**
  *
- * @author samuelweber
+ * @author samuelweber, gisela and dinah
  */
 public class BitInputStream {
     protected InputStream in;
